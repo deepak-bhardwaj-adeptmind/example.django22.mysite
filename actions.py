@@ -5,7 +5,7 @@ import os
 import sys
 from django.contrib import admin
 from django.urls import path
-
+from mysite.settings import SECRET_KEY
 from prefect import Flow, task
 
 def run_actions():
