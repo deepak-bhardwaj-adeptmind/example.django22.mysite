@@ -54,9 +54,12 @@ jobs:
 #          github_token: ${{ secrets.GITHUB_TOKEN }}
 #          branch: feed_integration_automate
 #          force: true
+      # set a date-time variable to use it in the commit message and pull request title
+      - name: set current date and time as env variable
+        run: echo "NOW=$(date +'%Y-%m-%d(%H:%M:%S)')" >> $GITHUB_ENV
+
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
-        run: echo "NOW=$(date +'%Y-%m-%d(%H:%M:%S)')" >> $GITHUB_ENV
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'feat: config updates as per SMT changes ${{ env.NOW }}'
