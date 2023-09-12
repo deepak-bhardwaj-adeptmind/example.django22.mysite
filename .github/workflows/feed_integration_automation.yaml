@@ -63,17 +63,17 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'feat: config updates as per SMT changes ${{ env.NOW }}'
-        committer: GitHub <noreply@github.com>
-        author: GitHub <noreply@github.com>
-        branch: feed_integration_automate_1
-        base: master
-        delete-branch: true
-        title: 'feat: config updates as per SMT changes'
-        body: |
-          The changes are done as per the latest SMT details.
-        labels: |
-          automated pr
-          add feeds
-          remove feeds
-        assignees: deepak-bhardwaj-adeptmind
-        reviewers: deepak-bhardwaj-adeptmind
+          committer: GitHub <noreply@github.com>
+          author: GitHub <noreply@github.com>
+          branch: feed_integration_automate_1
+          base: master
+          delete-branch: true
+          title: 'feat: config updates as per SMT changes'
+          body: |
+            The changes are done as per the latest SMT details.
+          labels: |
+            automated pr
+            add feeds
+            remove feeds
+          assignees: deepak-bhardwaj-adeptmind
+          reviewers: deepak-bhardwaj-adeptmind
