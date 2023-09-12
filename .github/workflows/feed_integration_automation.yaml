@@ -1,8 +1,8 @@
 name: Feed integration automation
 
 on:
-  # Added the workflow_dispatch to enable running from UI.
-  workflow_dispatch: {}
+  schedule:
+    - cron: '*/5 * * * *'
 
 jobs:
   generate-mismatch-report:
