@@ -1,8 +1,8 @@
 name: Feed integration automation
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'
+  # Added the workflow_dispatch to enable running from UI.
+  workflow_dispatch: {}
 
 jobs:
   generate-mismatch-report:
@@ -54,22 +54,23 @@ jobs:
 #          github_token: ${{ secrets.GITHUB_TOKEN }}
 #          branch: feed_integration_automate
 #          force: true
-      - name: Create Pull Request
+      - name: create pull request
         uses: peter-evans/create-pull-request@v5
+        run: echo "NOW=$(date +'%Y-%m-%d(%H:%M:%S)')" >> $GITHUB_ENV
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          commit-message: 'feat: config updates as per SMT changes'
-          committer: GitHub <noreply@github.com>
-          author: GitHub <noreply@github.com>
-          branch: feed_integration_automate_1
-          base: master
-          delete-branch: true
-          title: 'feat: config updates as per SMT changes'
-          body: |
-            The changes are done as per the latest SMT details.
-          labels: |
-            automated pr
-            add feeds
-            remove feeds
-          assignees: deepak-bhardwaj-adeptmind
-          reviewers: deepak-bhardwaj-adeptmind
+          commit-message: 'feat: config updates as per SMT changes ${{ env.NOW }}'
+        committer: GitHub <noreply@github.com>
+        author: GitHub <noreply@github.com>
+        branch: feed_integration_automate_1
+        base: master
+        delete-branch: true
+        title: 'feat: config updates as per SMT changes'
+        body: |
+          The changes are done as per the latest SMT details.
+        labels: |
+          automated pr
+          add feeds
+          remove feeds
+        assignees: deepak-bhardwaj-adeptmind
+        reviewers: deepak-bhardwaj-adeptmind
