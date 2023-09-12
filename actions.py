@@ -24,7 +24,8 @@ def run_actions():
     data = {
         "morguard": "en_ca",
         "hammerson": "fr_fr",
-        "oxford": "en_ca"  # update
+        "oxford": "en_ca",  # update
+        "oxford_fr": "fr_ca"  # update
     }
     with open("sample_config.json", "w") as f:
         json.dump(data, f)
