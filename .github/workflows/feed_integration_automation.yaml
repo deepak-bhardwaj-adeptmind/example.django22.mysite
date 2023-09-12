@@ -54,13 +54,16 @@ jobs:
 #          github_token: ${{ secrets.GITHUB_TOKEN }}
 #          branch: feed_integration_automate
 #          force: true
-      # set a date-time variable to use it in the commit message and pull request title
-      - name: set current date and time as env variable
+
+      - name: set timezone
         uses: szenius/set-timezone@v1.2
         with:
           timezoneLinux: "Canada/Toronto"
           timezoneMacos: "Canada/Toronto"
           timezoneWindows: "Toronto Standard Time"
+
+      # set a date-time variable to use it in the commit message and pull request title
+      - name: set current date and time as env variable
         run: echo "NOW=$(date +'%Y-%m-%dT%H:%M:%S')" >> $GITHUB_ENV
 
       - name: create pull request
