@@ -83,5 +83,5 @@ jobs:
             automated pr
             add feeds
             remove feeds
-          assignees: deepak-bhardwaj-adeptmind
           reviewers: deepak-bhardwaj-adeptmind
+          draft: false
