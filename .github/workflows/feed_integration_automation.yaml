@@ -35,11 +35,13 @@ jobs:
 
       # run the script
       - name: execute the script
+        id: execute-the-script
         env:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
         run: |
           echo "PYTHONPATH=home/runner/work/example.django22.mysite/example.django22.mysite" >> $GITHUB_ENV
-          echo "INTEGRATED_FEEDS_LOGS=(PYTHONPATH=. python actions.py)" >> $GITHUB_OUTPUT
+          echo "INTEGRATED_FEEDS_LOGS=(python actions.py)" >> $GITHUB_OUTPUT
+        shell: bash
 
       # set a date-time variable to use it in the commit message and pull request title
       - name: set current date and time as env variable
