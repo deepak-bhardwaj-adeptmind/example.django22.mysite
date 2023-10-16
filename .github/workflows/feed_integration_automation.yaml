@@ -37,7 +37,9 @@ jobs:
       - name: execute the script
         env:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
-        run: echo "INTEGRATED_FEEDS_LOGS=python actions.py" >> $GITHUB_OUTPUT
+        run: |
+          echo "PYTHONPATH=home/runner/work/example.django22.mysite/example.django22.mysite" >> $GITHUB_ENV
+          echo "INTEGRATED_FEEDS_LOGS=(PYTHONPATH=. python actions.py)" >> $GITHUB_OUTPUT
 
       # set a date-time variable to use it in the commit message and pull request title
       - name: set current date and time as env variable
@@ -50,7 +52,7 @@ jobs:
           commit-message: 'feat: config updates as per SMT changes(${{ env.NOW }})'
           committer: GitHub <noreply@github.com>
           author: GitHub <noreply@github.com>
-          branch: feed_integration_automate_1
+          branch: feed_integration_automate
           base: master
           delete-branch: true
           title: 'feat: config updates as per SMT changes(${{ env.NOW }})'

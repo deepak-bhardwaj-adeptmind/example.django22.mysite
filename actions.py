@@ -74,7 +74,7 @@ def run_actions():
             successfully_removed_feeds_logs
         ]
     )
-    print("-----------------")
+    print("-----------------git push origin --delete feed_integration_automate")
     print(integration_logs)
     return integration_logs
 
