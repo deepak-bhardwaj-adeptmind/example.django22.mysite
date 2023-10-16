@@ -26,7 +26,8 @@ def run_actions():
         "morguard": "en_ca",
         "hammerson": "fr_fr",
         "oxford": "en_ca",  # update
-        "oxford_fr": "fr_ca"  # update
+        "oxford_fr": "fr_ca",  # update
+        "oxford_pl": "pl_ca"  # update
     }
     with open("sample_config.json", "w") as f:
         json.dump(data, f)
@@ -73,6 +74,8 @@ def run_actions():
             successfully_removed_feeds_logs
         ]
     )
+    print("-----------------")
+    print(integration_logs)
     return integration_logs
 
 
