@@ -40,8 +40,15 @@ jobs:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
         run: |
           echo "PYTHONPATH=home/runner/work/example.django22.mysite/example.django22.mysite" >> $GITHUB_ENV
-          echo "INTEGRATED_FEEDS_LOGS=(python actions.py)" >> $GITHUB_OUTPUT
-        shell: bash
+          echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py)
+
+#        job:
+#          steps:
+#            - run: echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py)
+#              id: counter
+#              shell: bash
+#            - run: echo "There's a thing in my code!"
+#              if: steps.counter.outputs.things == '0'
 
       # set a date-time variable to use it in the commit message and pull request title
       - name: set current date and time as env variable
