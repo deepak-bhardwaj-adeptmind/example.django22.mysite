@@ -75,7 +75,6 @@ def run_actions():
         ]
     )
     print(integration_logs)
-    sys.stderr.write(integration_logs)
 
 
 if __name__ == '__main__':
