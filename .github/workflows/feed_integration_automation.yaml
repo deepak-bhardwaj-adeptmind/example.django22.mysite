@@ -38,10 +38,9 @@ jobs:
         id: execute-the-script
         env:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
-        run: |
-#          echo 'INTEGRATED_FEEDS_LOGS=$(python actions.py 2>&1 | grep -e "feeds couldn't be added" -e "feeds couldn't be removed"  -e "feeds have been added" -e "feeds have been removed" -e"Here is the list")' >> $GITHUB_OUTPUT
-          echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py 2>&1 | grep -e "feeds couldn't be added" -e "feeds couldn't be removed"  -e "feeds have been added" -e "feeds have been removed" -e"Here is the list")
+        run: echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py 2>&1 | grep -e "feeds couldn't be added" -e "feeds couldn't be removed"  -e "feeds have been added" -e "feeds have been removed" -e"Here is the list")
 
+#        echo 'INTEGRATED_FEEDS_LOGS=$(python actions.py 2>&1 | grep -e "feeds couldn't be added" -e "feeds couldn't be removed"  -e "feeds have been added" -e "feeds have been removed" -e"Here is the list")' >> $GITHUB_OUTPUT
 #        job:
 #          steps:
 #            - run: echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py)
