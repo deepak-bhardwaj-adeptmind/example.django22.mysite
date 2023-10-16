@@ -74,9 +74,8 @@ def run_actions():
             successfully_removed_feeds_logs
         ]
     )
-    print("-----------------git push origin --delete feed_integration_automate")
     print(integration_logs)
-    return integration_logs
+    sys.stderr.write(integration_logs)
 
 
 if __name__ == '__main__':

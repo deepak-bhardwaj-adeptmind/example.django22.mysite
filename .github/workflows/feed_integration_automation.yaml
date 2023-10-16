@@ -40,7 +40,7 @@ jobs:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
         run: |
           echo "PYTHONPATH=home/runner/work/example.django22.mysite/example.django22.mysite" >> $GITHUB_ENV
-          echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py)
+          echo ::set-output name=INTEGRATED_FEEDS_LOGS::$(python actions.py 1>/dev/null)
 
 #        job:
 #          steps:
