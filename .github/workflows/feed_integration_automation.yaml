@@ -2,9 +2,7 @@ name: Feed integration automation
 
 on:
   # Added the workflow_dispatch to enable running from UI.
-  workflow_dispatch:
-  schedule:
-    - cron: '*/5 * * * *'
+  workflow_dispatch: {}
 
 jobs:
   generate-mismatch-report:
@@ -39,7 +37,7 @@ jobs:
       - name: execute the script
         env:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
-        run: python actions.py
+        run: echo "INTEGRATED_FEEDS_LOGS=python actions.py" >> $GITHUB_OUTPUT
 
       # commit the changes
 #      - name: commit files
@@ -81,6 +79,7 @@ jobs:
           title: 'feat: config updates as per SMT changes(${{ env.NOW }})'
           body: |
             The changes are done as per the latest SMT details.
+            ${{ steps.execute-the-script.outputs.INTEGRATED_FEEDS_LOGS }}
           labels: |
             automated pr
             add feeds
