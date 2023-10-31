@@ -35,7 +35,7 @@ jobs:
         env:
           MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
         run: |
-          PYTHONPATH=. python scripts -ua ${{ github.event.inputs.scrape_urls_to_aggregate_ids_map }} move_stores_to_jellyfish
+          PYTHONPATH=. python scripts/cli/main.py migrate-to-jellyfish --url_to_ag_id ${{ github.event.inputs.scrape_urls_to_aggregate_ids_map }}
 
       - name: create pull request
         uses: peter-evans/create-pull-request@v5
