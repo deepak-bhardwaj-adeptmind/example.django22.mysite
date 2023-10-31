@@ -1,6 +1,6 @@
 import yaml
 
-_path = "/Users/deepakkumar/Adeptmind/example.django22.mysite/scripts/jellyfish_domains.yaml"
+_path = "jellyfish_domains.yaml"
 
 
 def move_stores_to_jellyfish(_imap):
