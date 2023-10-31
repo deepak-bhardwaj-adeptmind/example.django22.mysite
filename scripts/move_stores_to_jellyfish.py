@@ -1,6 +1,6 @@
 import yaml
 
-_path = "jellyfish_domains.yaml"
+_path = "scripts/jellyfish_domains.yaml"
 
 
 def move_stores_to_jellyfish(_imap):
