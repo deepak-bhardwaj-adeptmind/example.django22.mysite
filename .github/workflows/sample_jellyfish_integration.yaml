@@ -60,7 +60,7 @@ jobs:
           title: 'feat: jellyfish migration'
           body: |
             The following urls have been moved to jellyfish.
-            ${{ steps.execute-the-script.outputs.INTEGRATED_FEEDS_LOGS }}
+            ${{ github.event.inputs.scrape_urls_to_aggregate_ids_map }}
           labels: |
             skulltula
             jellyfish
