@@ -1,4 +1,4 @@
-name: Jellyfish migration
+name: migrate-stores-from-skull-to-jellyfish
 
 on:
   # Added the workflow_dispatch to enable running from UI.
@@ -9,6 +9,9 @@ on:
         required: true
         default: '{"scrape_url_1": "aggregate_ids_1", "scrape_url_2": "aggregate_ids_2"}'
 
+env:
+  python_version: 3.9
+
 jobs:
   jellyfish-migration:
     # The type of runner that the job will run on
@@ -17,30 +20,34 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # checkout the repository content
-      - name: checkout repo content
+      - name: Checkout repo content
         uses: actions/checkout@v3
 
       # install the python version needed
-      - name: setup python
+      - name: Setup python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.9'
-            
+          python-version: ${{env.python_version}}
+
+      # try extracting dependencies from cache
+      - uses: actions/cache@v3
+        with:
+          path: ${{ env.pythonLocation }}
+          key: ${{ env.pythonLocation }}-${{ hashFiles('requirements.txt') }}
+
       # install python packages
-      - name: install python packages
+      - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       # run the script
-      - name: execute the script
+      - name: Perform migration
         id: execute-the-script
-        env:
-          MMS_URL: http://mall-management-service-prod-api.mall.adeptmind.ai
         run: |
           PYTHONPATH=. python scripts/cli/main.py migrate-to-jellyfish --url_to_ag_id '${{ github.event.inputs.scrape_urls_to_aggregate_ids_map }}'
 
-      - name: create pull request
+      - name: Create pull request
         uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
@@ -52,9 +59,11 @@ jobs:
           delete-branch: true
           title: 'feat: jellyfish migration'
           body: |
-            The changes are done as per the latest SMT details.
+            The following urls have been moved to jellyfish.
             ${{ steps.execute-the-script.outputs.INTEGRATED_FEEDS_LOGS }}
           labels: |
-            jellyfish migration
+            skulltula
+            jellyfish
+            migration
+          # adding assignee as Deepak and reviewers as Adil and Deepak.
           reviewers: deepak-bhardwaj-adeptmind
-          draft: false
