@@ -1,2 +1,4 @@
 Django==2.2.10
 prefect==1.2.2
+pyyaml>=5.4.1 # restricted by prefect
+click<8.2,>=8.0 # restricted by prefect
