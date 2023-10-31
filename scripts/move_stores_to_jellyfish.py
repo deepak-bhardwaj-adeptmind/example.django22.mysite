@@ -5,7 +5,6 @@ _path = "/Users/deepakkumar/Adeptmind/example.django22.mysite/scripts/jellyfish_
 
 def move_stores_to_jellyfish(_imap):
     _map = yaml.safe_load(_path)
-    output = _map | _imap
     _map.update(_imap)
     with open(_path, "w") as f:
-        yaml.dump(output, f)
+        yaml.dump(_map, f)
